@@ -1,6 +1,6 @@
-import 'package:blocs_aula/src/shared/constrants.dart';
+import 'package:flutter_cine/src/shared/constrants.dart';
 import 'package:dio/dio.dart';
-import 'package:blocs_aula/src/shared/models/movie.dart';
+import 'package:flutter_cine/src/shared/models/movie.dart';
 
 class GenerealAPI {
   Dio dio;

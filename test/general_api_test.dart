@@ -1,6 +1,6 @@
-import 'package:blocs_aula/src/shared/repositories/general_api.dart';
+import 'package:flutter_cine/src/shared/repositories/general_api.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:blocs_aula/src/shared/models/movie.dart';
+import 'package:flutter_cine/src/shared/models/movie.dart';
 
 main() {
   var api = GenerealAPI();

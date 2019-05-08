@@ -1,4 +1,4 @@
-import 'package:blocs_aula/src/home/home.dart';
+import 'package:flutter_cine/src/home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

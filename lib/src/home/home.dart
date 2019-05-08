@@ -1,6 +1,6 @@
-import 'package:blocs_aula/src/home/home_bloc.dart';
-import 'package:blocs_aula/src/shared/models/movie.dart';
-import 'package:blocs_aula/src/shared/repositories/general_api.dart';
+import 'package:flutter_cine/src/home/home_bloc.dart';
+import 'package:flutter_cine/src/shared/models/movie.dart';
+import 'package:flutter_cine/src/shared/repositories/general_api.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {

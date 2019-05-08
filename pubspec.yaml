@@ -1,5 +1,5 @@
-name: blocs_aula
-description: A new Flutter project.
+name: flutter_cine
+description: Visualizar os últimos filmes usando Flutter.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43

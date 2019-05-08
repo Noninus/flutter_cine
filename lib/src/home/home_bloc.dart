@@ -1,7 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:blocs_aula/src/shared/repositories/general_api.dart';
-import 'package:blocs_aula/src/shared/models/movie.dart';
+import 'package:flutter_cine/src/shared/repositories/general_api.dart';
+import 'package:flutter_cine/src/shared/models/movie.dart';
 
 class HomeBloc implements BlocBase {
   final GenerealAPI api;
