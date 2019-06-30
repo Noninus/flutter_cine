@@ -1,3 +1,4 @@
+import 'package:flutter_cine/src/filme/filme.dart';
 import 'package:flutter_cine/src/home/home_bloc.dart';
 import 'package:flutter_cine/src/shared/models/movie.dart';
 import 'package:flutter_cine/src/shared/repositories/general_api.dart';
@@ -67,49 +68,54 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  criarCardFilmes(Movie movie) {
-    var quantidadeEstrelas = movie.voteAverage / 2;
-    return Card(
-      elevation: 8.0,
-      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-      child: Container(
-          decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-          child: ListTile(
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-
-            title: Text(
-              movie.title,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-            subtitle: Column(
-              children: <Widget>[
-                quantidadeEstrela(quantidadeEstrelas),
-                Text(
-                  movie.overview,
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-
-            trailing: Image.network(
-              "https://image.tmdb.org/t/p/w200/" + movie.posterPath,
-              width: 50,
-            ),
-          )),
+  criarCardFilmes(Movie filme) {
+    var quantidadeEstrelas = filme.voteAverage / 2;
+    return GestureDetector(
+      onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FilmePage(
+                      filme: filme,
+                    )),
+          ),
+      child: Card(
+        elevation: 8.0,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child: Container(
+            decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+            child: ListTile(
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              title: Text(
+                filme.title,
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Column(
+                children: <Widget>[
+                  quantidadeEstrela(quantidadeEstrelas),
+                  Text(
+                    filme.overview,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+              trailing: Image.network(
+                "https://image.tmdb.org/t/p/w200/" + filme.posterPath,
+                width: 100,
+              ),
+            )),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        backgroundColor: Color(0xFF3a4256),
         appBar: AppBar(
           elevation: 0.1,
-          backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+          backgroundColor: Color(0xFF3a4256),
           title: Text("Flutter Cine"),
         ),
         body: StreamBuilder<List<Movie>>(
@@ -118,11 +124,11 @@ class _MyHomePageState extends State<MyHomePage> {
               if (!snapshot.hasData)
                 return Center(child: CircularProgressIndicator());
               if (snapshot.hasError) return Text(snapshot.error);
-              List<Movie> movie = snapshot.data;
+              List<Movie> filme = snapshot.data;
               return ListView.builder(
-                itemCount: movie.length,
+                itemCount: filme.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return criarCardFilmes(movie[index]);
+                  return criarCardFilmes(filme[index]);
                 },
               );
             }));
