@@ -95,15 +95,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   quantidadeEstrela(quantidadeEstrelas),
                   Text(
-                    filme.overview,
+                    filme.overview.length >= 80
+                        ? filme.overview.substring(0, 80) + "..."
+                        : filme.overview,
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
               ),
-              trailing: Image.network(
-                "https://image.tmdb.org/t/p/w200/" + filme.posterPath,
-                width: 100,
+              trailing: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  "https://image.tmdb.org/t/p/w400/" + filme.posterPath,
+                  fit: BoxFit.fill,
+                ),
               ),
+              //trailing: Image.network(
+              //  "https://image.tmdb.org/t/p/w400/" + filme.posterPath,
+              //  fit: BoxFit.fill,
+              //),
             )),
       ),
     );

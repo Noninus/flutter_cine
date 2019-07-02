@@ -122,6 +122,19 @@ class _FilmePageState extends State<FilmePage> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(200), // here the desired height
           child: AppBar(
+            leading: Padding(
+              padding: const EdgeInsets.all(6),
+              child: RaisedButton(
+                  padding: EdgeInsets.all(6),
+                  color: Colors.black,
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30))),
+            ),
             flexibleSpace: Image.network(
                 "https://image.tmdb.org/t/p/w500/" + widget.filme.backdropPath,
                 fit: BoxFit.cover),
