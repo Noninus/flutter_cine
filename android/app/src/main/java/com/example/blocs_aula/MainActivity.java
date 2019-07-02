@@ -1,4 +1,4 @@
-package com.example.blocs_aula;
+package nonino.rafael.flutter_cine;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

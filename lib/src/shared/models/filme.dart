@@ -1,4 +1,4 @@
-class Movie {
+class Filme {
   int voteCount;
   int id;
   bool video;
@@ -14,7 +14,7 @@ class Movie {
   String overview;
   String releaseDate;
 
-  Movie(
+  Filme(
       {this.voteCount,
       this.id,
       this.video,
@@ -30,7 +30,7 @@ class Movie {
       this.overview,
       this.releaseDate});
 
-  Movie.fromJson(Map<String, dynamic> json) {
+  Filme.fromJson(Map<String, dynamic> json) {
     voteCount = json['vote_count'];
     id = json['id'];
     video = json['video'];

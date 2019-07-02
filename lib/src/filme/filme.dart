@@ -1,14 +1,14 @@
-import 'package:flutter_cine/src/filme/ArcBannerImage.dart';
-import 'package:flutter_cine/src/filme/Poster.dart';
+import 'package:flutter_cine/src/filme/arcBannerImage.dart';
+import 'package:flutter_cine/src/filme/poster.dart';
 import 'package:flutter_cine/src/home/home_bloc.dart';
-import 'package:flutter_cine/src/shared/models/movie.dart';
+import 'package:flutter_cine/src/shared/models/filme.dart';
 import 'package:flutter_cine/src/shared/repositories/general_api.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_cine/src/shared/constrants.dart';
 
 class FilmePage extends StatefulWidget {
-  final Movie filme;
+  final Filme filme;
 
   FilmePage({Key key, this.filme}) : super(key: key);
 
@@ -81,7 +81,7 @@ class _FilmePageState extends State<FilmePage> {
     );
   }
 
-  movieInformation(Movie filme) => Column(
+  movieInformation(Filme filme) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -103,7 +103,7 @@ class _FilmePageState extends State<FilmePage> {
         ],
       );
 
-  overviewText(Movie filme) => Padding(
+  overviewText(Filme filme) => Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,7 +116,7 @@ class _FilmePageState extends State<FilmePage> {
         ),
       );
 
-  headerWidget(Movie filme) => Stack(
+  headerWidget(Filme filme) => Stack(
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 140.0),

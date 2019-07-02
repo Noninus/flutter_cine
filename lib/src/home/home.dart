@@ -1,7 +1,7 @@
 import 'package:flutter_cine/src/filme/filme.dart';
 import 'package:flutter_cine/src/home/home_bloc.dart';
 import 'package:flutter_cine/src/shared/constrants.dart';
-import 'package:flutter_cine/src/shared/models/movie.dart';
+import 'package:flutter_cine/src/shared/models/filme.dart';
 import 'package:flutter_cine/src/shared/repositories/general_api.dart';
 import 'package:flutter/material.dart';
 
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  cardFilmes(Movie filme) {
+  cardFilmes(Filme filme) {
     Widget linha = Container(
       margin: EdgeInsets.all(8.0),
       child: Row(
@@ -154,13 +154,13 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color(0xFF3a4256),
           title: Text("Flutter Cine"),
         ),
-        body: StreamBuilder<List<Movie>>(
-            stream: bloc.listOut,
+        body: StreamBuilder<List<Filme>>(
+            stream: bloc.filmesStream,
             builder: (context, snapshot) {
               if (!snapshot.hasData)
                 return Center(child: CircularProgressIndicator());
               if (snapshot.hasError) return Text(snapshot.error);
-              List<Movie> filme = snapshot.data;
+              List<Filme> filme = snapshot.data;
               return ListView.builder(
                 itemCount: filme.length,
                 itemBuilder: (BuildContext context, int index) {
