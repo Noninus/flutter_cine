@@ -27,7 +27,8 @@ dependencies:
   bloc_pattern: ^2.1.0
   rxdart: any
   intl: ^0.15.7
-
+  http: ^0.12.0+2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,30 +1,23 @@
 import 'package:flutter_cine/src/filme/filme.dart';
-import 'package:flutter_cine/src/home/home_bloc.dart';
+import 'package:flutter_cine/src/home/home_future.dart';
 import 'package:flutter_cine/src/shared/constrants.dart';
 import 'package:flutter_cine/src/shared/models/filme.dart';
-import 'package:flutter_cine/src/shared/repositories/general_api.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+class HomeFuturePage extends StatefulWidget {
+  HomeFuturePage({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomeFuturePageState createState() => _HomeFuturePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  HomeBloc bloc;
+class _HomeFuturePageState extends State<HomeFuturePage> {
+  Future<List<Filme>> filmes;
 
   @override
   void initState() {
     super.initState();
-    bloc = HomeBloc(GenerealAPI());
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    bloc.dispose();
+    filmes = fetchFilmes();
   }
 
   quantidadeEstrela(var quantidadeEstrelas) {
@@ -148,25 +141,31 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF3a4256),
+      appBar: AppBar(
+        elevation: 0.1,
         backgroundColor: Color(0xFF3a4256),
-        appBar: AppBar(
-          elevation: 0.1,
-          backgroundColor: Color(0xFF3a4256),
-          title: Text("Flutter Cine"),
-        ),
-        body: StreamBuilder<List<Filme>>(
-            stream: bloc.filmesStream,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData)
-                return Center(child: CircularProgressIndicator());
-              if (snapshot.hasError) return Text(snapshot.error);
-              List<Filme> filme = snapshot.data;
-              return ListView.builder(
-                itemCount: filme.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return cardFilmes(filme[index]);
-                },
-              );
-            }));
+        title: Text("Flutter Cine"),
+      ),
+      body: FutureBuilder<List<Filme>>(
+        future: filmes,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<Filme> filme = snapshot.data;
+            return ListView.builder(
+              itemCount: filme.length,
+              itemBuilder: (BuildContext context, int index) {
+                return cardFilmes(filme[index]);
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+
+          // Animação loading
+          return Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
   }
 }
