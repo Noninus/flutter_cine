@@ -16,13 +16,17 @@ class Poster extends StatelessWidget {
     var width = POSTER_RATIO * height;
 
     return Material(
-        borderRadius: BorderRadius.circular(4.0),
-        elevation: 2.0,
-        child: Image.network(
-          posterUrl,
-          fit: BoxFit.cover,
-          width: width,
-          height: height,
-        ));
+      borderRadius: BorderRadius.circular(4.0),
+      elevation: 2.0,
+      color: Colors.blueGrey,
+      child: Hero(
+          tag: posterUrl,
+          child: Image.network(
+            posterUrl,
+            fit: BoxFit.cover,
+            width: width,
+            height: height,
+          )),
+    );
   }
 }

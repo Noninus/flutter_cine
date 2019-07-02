@@ -69,57 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  criarCardFilmes(Movie filme) {
-    var quantidadeEstrelas = filme.voteAverage / 2;
-    return GestureDetector(
-      onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => FilmePage(
-                      filme: filme,
-                    )),
-          ),
-      child: Card(
-        elevation: 8.0,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        child: Container(
-            decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-            child: ListTile(
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              title: Text(
-                filme.title,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-              subtitle: Column(
-                children: <Widget>[
-                  quantidadeEstrela(quantidadeEstrelas),
-                  Text(
-                    filme.overview.length >= 80
-                        ? filme.overview.substring(0, 80) + "..."
-                        : filme.overview,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-              leading: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  "https://image.tmdb.org/t/p/w400/" + filme.posterPath,
-                  fit: BoxFit.fill,
-                  height: 200,
-                ),
-              ),
-              //trailing: Image.network(
-              //  "https://image.tmdb.org/t/p/w400/" + filme.posterPath,
-              //  fit: BoxFit.fill,
-              //),
-            )),
-      ),
-    );
-  }
-
   posterFilme(String posterPath) {
     return Container(
         width: 100.0,
@@ -128,10 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
           borderRadius: BorderRadius.all(Radius.circular(8)),
           color: Colors.red,
         ),
-        child: new ClipRRect(
-          borderRadius: new BorderRadius.circular(8),
-          child: Image.network(URL_IMAGE + posterPath, fit: BoxFit.contain),
-        ));
+        child: Hero(
+            tag: URL_IMAGE + posterPath,
+            child: new ClipRRect(
+              borderRadius: new BorderRadius.circular(8),
+              child: Image.network(URL_IMAGE + posterPath, fit: BoxFit.contain),
+            )));
   }
 
   descricaoFilme(String filmeTitle) {
