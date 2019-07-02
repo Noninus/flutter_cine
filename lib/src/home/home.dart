@@ -1,5 +1,6 @@
 import 'package:flutter_cine/src/filme/filme.dart';
 import 'package:flutter_cine/src/home/home_bloc.dart';
+import 'package:flutter_cine/src/shared/constrants.dart';
 import 'package:flutter_cine/src/shared/models/movie.dart';
 import 'package:flutter_cine/src/shared/repositories/general_api.dart';
 import 'package:flutter/material.dart';
@@ -102,11 +103,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              trailing: ClipRRect(
+              leading: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
                   "https://image.tmdb.org/t/p/w400/" + filme.posterPath,
                   fit: BoxFit.fill,
+                  height: 200,
                 ),
               ),
               //trailing: Image.network(
@@ -114,6 +116,80 @@ class _MyHomePageState extends State<MyHomePage> {
               //  fit: BoxFit.fill,
               //),
             )),
+      ),
+    );
+  }
+
+  posterFilme(String posterPath) {
+    return Container(
+        width: 100.0,
+        height: 160.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          color: Colors.red,
+        ),
+        child: new ClipRRect(
+          borderRadius: new BorderRadius.circular(8),
+          child: Image.network(URL_IMAGE + posterPath, fit: BoxFit.contain),
+        ));
+  }
+
+  descricaoFilme(String filmeTitle) {
+    return Text(
+      filmeTitle,
+      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    );
+  }
+
+  subtituloFilme(String overview, double quantidadeEstrelas) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        quantidadeEstrela(quantidadeEstrelas),
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          overview.length >= 80 ? overview.substring(0, 80) + "..." : overview,
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    );
+  }
+
+  cardFilmes(Movie filme) {
+    Widget linha = Container(
+      margin: EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          posterFilme(filme.posterPath),
+          SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                descricaoFilme(filme.title),
+                SizedBox(
+                  height: 25,
+                ),
+                subtituloFilme(filme.overview, filme.voteAverage / 2),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+    return GestureDetector(
+      onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FilmePage(
+                      filme: filme,
+                    )),
+          ),
+      child: Card(
+        color: Colors.blueGrey,
+        child: linha,
       ),
     );
   }
@@ -137,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return ListView.builder(
                 itemCount: filme.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return criarCardFilmes(filme[index]);
+                  return cardFilmes(filme[index]);
                 },
               );
             }));
