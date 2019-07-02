@@ -120,8 +120,7 @@ class _FilmePageState extends State<FilmePage> {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 140.0),
-            child: ArcBannerImage(
-                "https://image.tmdb.org/t/p/w500" + filme.backdropPath),
+            child: ArcBannerImage(URL_BACKDROP + filme.backdropPath),
           ),
           Positioned(
             top: 32,
@@ -143,7 +142,7 @@ class _FilmePageState extends State<FilmePage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Poster(
-                  URL_IMAGE + widget.filme.posterPath,
+                  URL_POSTER + widget.filme.posterPath,
                   height: 180.0,
                 ),
                 SizedBox(width: 16.0),

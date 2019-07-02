@@ -78,10 +78,11 @@ class _HomeBlocPageState extends State<HomeBlocPage> {
           color: Colors.red,
         ),
         child: Hero(
-            tag: URL_IMAGE + posterPath,
+            tag: URL_POSTER + posterPath,
             child: new ClipRRect(
               borderRadius: new BorderRadius.circular(8),
-              child: Image.network(URL_IMAGE + posterPath, fit: BoxFit.contain),
+              child:
+                  Image.network(URL_POSTER + posterPath, fit: BoxFit.contain),
             )));
   }
 
