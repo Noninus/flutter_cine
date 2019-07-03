@@ -67,13 +67,13 @@ class _HomeFuturePageState extends State<HomeFuturePage> {
         width: 100.0,
         height: 160.0,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: BorderRadius.all(Radius.circular(4)),
           color: Colors.red,
         ),
         child: Hero(
             tag: URL_POSTER + posterPath,
             child: new ClipRRect(
-              borderRadius: new BorderRadius.circular(8),
+              borderRadius: new BorderRadius.circular(4),
               child:
                   Image.network(URL_POSTER + posterPath, fit: BoxFit.contain),
             )));
@@ -139,6 +139,25 @@ class _HomeFuturePageState extends State<HomeFuturePage> {
     );
   }
 
+  Widget cardDoidao(Filme filme) {
+    return Card(
+      color: Colors.blueGrey,
+      child: Row(
+        children: <Widget>[
+          posterFilme(filme.posterPath),
+          Expanded(
+            child: ListTile(
+                title: Container(
+                  child: Text(filme.title),
+                ),
+                subtitle:
+                    subtituloFilme(filme.overview, filme.voteAverage / 2)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,7 +175,8 @@ class _HomeFuturePageState extends State<HomeFuturePage> {
             return ListView.builder(
               itemCount: filme.length,
               itemBuilder: (BuildContext context, int index) {
-                return cardFilmes(filme[index]);
+                // return cardFilmes(filme[index]);
+                return cardDoidao(filme[index]);
               },
             );
           } else if (snapshot.hasError) {
