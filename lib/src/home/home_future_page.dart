@@ -175,8 +175,8 @@ class _HomeFuturePageState extends State<HomeFuturePage> {
             return ListView.builder(
               itemCount: filme.length,
               itemBuilder: (BuildContext context, int index) {
-                // return cardFilmes(filme[index]);
-                return cardDoidao(filme[index]);
+                return cardFilmes(filme[index]);
+                // return cardDoidao(filme[index]);
               },
             );
           } else if (snapshot.hasError) {

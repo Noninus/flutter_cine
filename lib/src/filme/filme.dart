@@ -1,5 +1,5 @@
-import 'package:flutter_cine/src/filme/arcBannerImage.dart';
-import 'package:flutter_cine/src/filme/poster.dart';
+import 'package:flutter_cine/src/filme/ArcBannerImage.dart';
+import 'package:flutter_cine/src/filme/Poster.dart';
 import 'package:flutter_cine/src/home/home_bloc.dart';
 import 'package:flutter_cine/src/shared/models/filme.dart';
 import 'package:flutter_cine/src/shared/repositories/general_api.dart';
