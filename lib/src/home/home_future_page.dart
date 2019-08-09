@@ -139,24 +139,6 @@ class _HomeFuturePageState extends State<HomeFuturePage> {
     );
   }
 
-  Widget cardDoidao(Filme filme) {
-    return Card(
-      color: Colors.blueGrey,
-      child: Row(
-        children: <Widget>[
-          posterFilme(filme.posterPath),
-          Expanded(
-            child: ListTile(
-                title: Container(
-                  child: Text(filme.title),
-                ),
-                subtitle:
-                    subtituloFilme(filme.overview, filme.voteAverage / 2)),
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +158,6 @@ class _HomeFuturePageState extends State<HomeFuturePage> {
               itemCount: filme.length,
               itemBuilder: (BuildContext context, int index) {
                 return cardFilmes(filme[index]);
-                // return cardDoidao(filme[index]);
               },
             );
           } else if (snapshot.hasError) {
